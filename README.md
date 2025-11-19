@@ -8,7 +8,7 @@ Although the repository is hosted on GitHub, it is expected that the solution, i
 
 1. Clone this repository to your local machine.
 2. Create a new private repository on your GitLab profile (create a GitLab account if you don't already have one).
-   - Name the repository `cloud-engineer-spts-solution-october-2025`.
+   - Name the repository `cloud-engineer-spts-solution-november-2025`.
 3. Implement all the tasks described below, and push to a `main` branch before submitting your results.
 4. Add as direct members the users we mentioned in a separate email, with at least the `Maintainer` role, to your submission repository. They will be rating your submission.
 
@@ -33,11 +33,8 @@ TIP: You might need to modify some aspects of the `app` itself (i.e., add missin
    - `production.yaml` compose should pull images from the internal registry hosted on GitLab CI linked with the project, do not expose `OpenAPI` docs `api/v1/docs` and follow more strict security best practices.
    - Add a backend-app service health check that does an HTTP GET on `api/v1/activity` to see if the application is healthy, and waits until it is.
 
-3. Prepare a basic CI/CD workflow (or workflows) based on GitLab CI that will:
+3. (Optional) Prepare a basic CI/CD workflow (or workflows) based on GitLab CI that will:
    - Include a CI job that lists outdated dependencies in the app project.
    - Include a CI job that tests if `docker compose up` can be run for both of the `deployment/*.yaml` compositions.
    - Re-build the `backend.dockerfile` image if either the app source code, `dockerfile`, or app dependencies change, and push the container image to the project's internal `Container Registry` (after merging/pushing to `main`).
    - Re-build the `nginx.dockerfile` if either the nginx config or `dockerfile` definition, or `index.html` changes, and push the container image to the project's internal `Container Registry` (after merging/pushing to `main`).
-
-4. (Optional) Using <https://github.com/mingrammer/diagrams>, create `docs/gcp.py` that will **create an example infrastructure diagram** that could deploy the above application using build artifacts and `production.yaml`, and make the services exposed by the nginx reverse proxy available via HTTPS.
-   - Use only basic services that you are familiar with. The simpler the infrastructure, the better! Keep in mind that it still needs to meet basic security checks (TLS, firewall, public access, etc.)!
